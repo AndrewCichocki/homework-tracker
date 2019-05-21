@@ -1,15 +1,20 @@
 {
   "name": "homework-tracker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "client.js",
   "license": "MIT",
   "author": "Andrew Cichocki",
   "scripts": {
-    "start": "parcel index.html"
+    "start:client": "parcel index.html",
+    "start:server": "node server/app.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.0.0-rc.0",
+    "dotenv": "^8.0.0",
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
     "material-table": "^1.36.4",
+    "pg": "^7.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "unstated-next": "^1.1.0"
