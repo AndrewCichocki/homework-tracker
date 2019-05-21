@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import MaterialTable from 'material-table'
+// axios?
 
 const assignmentsFromDb = [
-  { name: 'Essay 1', status: 'In Progress', dueDate: '5/20/2019', subject: 1 },
-  { name: 'Algebra', status: 'Not Started', dueDate: '5/21/2019', subject: 2 },
-  { name: 'Essay 2', status: 'Not Started', dueDate: '5/22/2019', subject: 1 },
+  { name: 'Essay 1', status: 1, dueDate: '5/20/2019', subject: 'English' },
+  { name: 'Algebra', status: 0, dueDate: '5/21/2019', subject: 'Math' },
+  { name: 'Essay 2', status: 0, dueDate: '5/22/2019', subject: 'English' },
 ]
-const subjectsFromDb = { 1: 'English', 2: 'Math' }
-const statuses = { 'Not Started': 'Not Started', 'In Progress': 'In Progress', 'Complete': 'Complete' }
+// const subjectsFromDb = { 1: 'English', 2: 'Math' }
+const statuses = { 0: 'Not Started', 1: 'In Progress', 2: 'Complete' }
+// different colour row for status past due date?
 
 function AssignmentsTable() {
   const [state, setState] = useState({
-    data: assignmentsFromDb,
-    subjects: subjectsFromDb
+    data: assignmentsFromDb
+    // subjects: subjectsFromDb
   })
   return (
     <div style={{ maxWidth: '100%' }}>
@@ -22,7 +24,8 @@ function AssignmentsTable() {
           { title: 'Name', field: 'name' },
           { title: 'Status', field: 'status', lookup: statuses },
           { title: 'Due Date', field: 'dueDate', type: 'date' },
-          { title: 'Subject', field: 'subject', lookup: state.subjects }
+          // { title: 'Subject', field: 'subject', lookup: state.subjects }
+          { title: 'Subject', field: 'subject' }
         ]}
         data={state.data}
         editable={{
