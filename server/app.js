@@ -22,24 +22,44 @@ router
     await next()
   })
   .get('/assignment', async (ctx, next) => {
-    ctx.body = await getAllAssignments()
-    await next()
+    try {
+      ctx.body = await getAllAssignments()
+    } catch (err) {
+      ctx.throw(400)
+    } finally {
+      await next()
+    }
   })
   .post('/assignment', async (ctx, next) => {
-    const { name, dueDate, status, subject } = ctx.request.body
-    ctx.body = await addAssignment(name, dueDate, status, subject)
-    await next()
+    try {
+      const { name, dueDate, status, subject } = ctx.request.body
+     ctx.body = await addAssignment(name, dueDate, status, subject)
+    } catch (err) {
+      ctx.throw(400)
+    } finally {
+      await next()
+    }
   })
   .put('/assignment/:id', async (ctx, next) => {
-    const { id } = ctx.params
-    const { name, dueDate, status, subject } = ctx.request.body
-    ctx.body = await updateAssignment(id, name, dueDate, status, subject)
-    await next()
+    try {
+      const { id } = ctx.params
+      const { name, dueDate, status, subject } = ctx.request.body
+      ctx.body = await updateAssignment(id, name, dueDate, status, subject)
+    } catch (err) {
+      ctx.throw(400)
+    } finally {
+      await next()
+    }
   })
   .del('/assignment/:id', async (ctx, next) => {
-    const { id } = ctx.params
-    ctx.body = await deleteAssignment(id)
-    await next()
+    try {
+      const { id } = ctx.params
+      ctx.body = await deleteAssignment(id)
+    } catch (err) {
+      ctx.throw(400)
+    } finally {
+      await next()
+    }
   })
 
 app
