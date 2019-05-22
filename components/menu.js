@@ -35,11 +35,11 @@ function Menu({ pages }) {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          {pages.map(({ label }) => (<Tab label={label} />) )}
+          {pages.map(({ label }, i) => (<Tab label={label} key={i} />) )}
         </Tabs>
       </AppBar>
       {pages.map(({ content }, i) =>
-        value === i && (<TabContainer>{content}</TabContainer>))}
+        value === i && (<TabContainer key={i}>{content}</TabContainer>))}
     </div>
   )
 }

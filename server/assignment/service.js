@@ -16,7 +16,8 @@ const updateAssignment = async (assignmentId, name, dueDate, status, subject) =>
 
 const deleteAssignment = async (assignmentId) => {
   // if (!assignmentId) return 'All fields are required'
-  return q.deleteAssignment(assignmentId)
+  await q.deleteAssignment(assignmentId)
+  return await q.getAllAssignments()
 }
 
 module.exports = {

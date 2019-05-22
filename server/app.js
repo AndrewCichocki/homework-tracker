@@ -1,9 +1,10 @@
-require('dotenv').config()
+require('dotenv').config();
 const Koa = require('koa')
+const cors = require('@koa/cors')
 const BodyParser = require('koa-bodyparser')
 const Router = require('koa-router')
 
-const { dbConnect } = require('./db') // , dbDisconnect
+const { dbConnect, dbDisconnect } = require('./db')
 const {
   getAllAssignments,
   addAssignment,
@@ -38,13 +39,13 @@ router
     await next()
   })
   .del('/assignment/:id', async (ctx, next) => {
-    // get id from URL
-    await deleteAssignment(id)
-    ctx.body = 'idk?'
+    const { id } = ctx.params
+    ctx.body = await deleteAssignment(id)
     await next()
   })
 
 app
+  .use(cors({ origin: '*' }))
   .use(BodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
@@ -56,3 +57,8 @@ app
     dbConnect()
     console.log(`Listening on port ${PORT}`)
   })
+
+process.on('SIGTERM', () => {
+  dbDisconnect()
+  console.log('SIGTERM signal received.');
+});

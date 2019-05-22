@@ -2,7 +2,12 @@ const { query, queryOne } = require('../db')
 
 const q = {
   getAllAssignments: `
-    SELECT *
+    SELECT
+      id,
+      name,
+      due_date::TEXT AS "dueDate",
+      status,
+      subject
     FROM assignment`,
   addAssignment: `
     INSERT INTO assignment (name, due_date, status, subject)

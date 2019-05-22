@@ -1,15 +1,18 @@
 {
   "name": "homework-tracker",
   "version": "1.0.0",
-  "main": "client.js",
+  "main": "server/app.js",
   "license": "MIT",
   "author": "Andrew Cichocki",
   "scripts": {
     "start:client": "parcel index.html",
-    "start:server": "node server/app.js"
+    "start:server": "node server/app.js",
+    "debug:server": "node inspect server/app.js"
   },
   "dependencies": {
+    "@koa/cors": "^3.0.0",
     "@material-ui/core": "^4.0.0-rc.0",
+    "axios": "^0.18.0",
     "dotenv": "^8.0.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",

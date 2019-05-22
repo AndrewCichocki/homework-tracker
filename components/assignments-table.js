@@ -1,21 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
-// axios?
+import axios from 'axios'
 
-const assignmentsFromDb = [
-  { name: 'Essay 1', status: 1, dueDate: '5/20/2019', subject: 'English' },
-  { name: 'Algebra', status: 0, dueDate: '5/21/2019', subject: 'Math' },
-  { name: 'Essay 2', status: 0, dueDate: '5/22/2019', subject: 'English' },
-]
-// const subjectsFromDb = { 1: 'English', 2: 'Math' }
+// const assignmentsFromDb = [
+//   { name: 'Essay 1', status: 1, due_date: '5/20/2019', subject: 'English' },
+//   { name: 'Algebra', status: 0, due_date: '5/21/2019', subject: 'Math' },
+//   { name: 'Essay 2', status: 0, due_date: '5/22/2019', subject: 'English' },
+// ]
 const statuses = { 0: 'Not Started', 1: 'In Progress', 2: 'Complete' }
 // different colour row for status past due date?
 
 function AssignmentsTable() {
   const [state, setState] = useState({
-    data: assignmentsFromDb
-    // subjects: subjectsFromDb
+    data: []
   })
+  useEffect(() => {
+    axios.get('http://localhost:3000/assignment')
+      .then(({ data }) => {
+        setState({ ...state, data })
+        console.log('updated')
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }, [])
   return (
     <div style={{ maxWidth: '100%' }}>
       <MaterialTable
@@ -24,7 +32,6 @@ function AssignmentsTable() {
           { title: 'Name', field: 'name' },
           { title: 'Status', field: 'status', lookup: statuses },
           { title: 'Due Date', field: 'dueDate', type: 'date' },
-          // { title: 'Subject', field: 'subject', lookup: state.subjects }
           { title: 'Subject', field: 'subject' }
         ]}
         data={state.data}
