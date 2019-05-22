@@ -16,7 +16,6 @@ const onError = (err, client) => {
 }
 
 const dbConnect = async () => {
-  // console.dir(conf)
   pool = new Pool(conf)
   pool.on('error', onError)
   return pool
@@ -32,15 +31,16 @@ const query = async (text, params) => {
   return rows
 }
 
-const queryOne = async (text, params) => {
-  if (!pool) await dbConnect()
-  const { rows = [] } = await pool.query(text, params)
-  return rows[0]
-}
+// May be used later
+// const queryOne = async (text, params) => {
+//   if (!pool) await dbConnect()
+//   const { rows = [] } = await pool.query(text, params)
+//   return rows[0]
+// }
 
 module.exports = {
   dbConnect,
   dbDisconnect,
-  query,
-  queryOne
+  query
+  // queryOne
 }

@@ -1,11 +1,11 @@
-const { query, queryOne } = require('../db')
+const { query } = require('../db')
 
 const q = {
   getAllAssignments: `
     SELECT
       id,
       name,
-      due_date::TEXT AS "dueDate",
+      to_char(due_date, 'YYYY-MM-DD') AS "dueDate",
       status,
       subject
     FROM assignment`,
