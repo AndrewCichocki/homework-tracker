@@ -13,13 +13,14 @@ DB_PASS=password
 DB_PORT=5432
 ```
 2. Create a new table named 'homework-tracker' (or whatever you named it earlier).
-3. Run server/schema.sql.
-4. Run the following commands in two separate terminal windows:
+3. Run server/schema.sql in pgAdmin.
+4. Install all packages by running the 'yarn' command in the root directory.
+5. Run the following commands in two separate terminal windows:
 ```
-yarn start:client
 yarn start:server
+yarn start:client
 ```
-5. Visit localhost:1234 to see the client. The server will be running on localhost:3000.
+6. Visit localhost:1234 to use the client. The server will be running on localhost:3000.
 
 ## Built With
 * [Material-UI] (https://next.material-ui.com) - Common UI components
@@ -29,6 +30,6 @@ yarn start:server
 * [Parcel] (https://parceljs.org) - Web app bundler
 
 ## Roadmap
-* Add more pages
 * Add validation
+* Add more pages
 * Add unit tests

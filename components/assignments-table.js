@@ -12,11 +12,8 @@ function AssignmentsTable() {
   // Populate inital data
   useEffect(() => {
     axios.get('http://localhost:3000/assignment')
-      .then(({ data }) => {
-        setState({ ...state, data })
-        console.log('Initial populate succeeded')
-      })
-      .catch((err) => console.error(err) )
+      .then(({ data }) => setState({ ...state, data }))
+      .catch((err) => console.error(err))
   }, [])
   return (
     <div style={{ maxWidth: '100%' }}>
@@ -35,7 +32,6 @@ function AssignmentsTable() {
               axios.post('http://localhost:3000/assignment', newData)
                 .then(({ data }) => {
                   setState({ ...state, data })
-                  console.log('Post succeeded')
                   resolve()
                 })
                 .catch((err) => {
@@ -50,7 +46,6 @@ function AssignmentsTable() {
               axios.put(`http://localhost:3000/assignment/${id}`, newData)
                 .then(({ data }) => {
                   setState({ ...state, data })
-                  console.log('Put succeeded')
                   resolve()
                 })
                 .catch((err) => {
@@ -65,7 +60,6 @@ function AssignmentsTable() {
               axios.delete(`http://localhost:3000/assignment/${id}`)
                 .then(({ data }) => {
                   setState({ ...state, data })
-                  console.log('Delete succeeded')
                   resolve()
                 })
                 .catch((err) => {
