@@ -27,15 +27,13 @@ router
   })
   .post('/assignment', async (ctx, next) => {
     const { name, dueDate, status, subject } = ctx.request.body
-    await addAssignment(name, dueDate, status, subject)
-    ctx.body = 'idk?'
+    ctx.body = await addAssignment(name, dueDate, status, subject)
     await next()
   })
   .put('/assignment/:id', async (ctx, next) => {
-    // get id from URL
-    const { id, name, dueDate, status, subject } = ctx.request.body
-    await updateAssignment(id, name, dueDate, status, subject)
-    ctx.body = 'idk?'
+    const { id } = ctx.params
+    const { name, dueDate, status, subject } = ctx.request.body
+    ctx.body = await updateAssignment(id, name, dueDate, status, subject)
     await next()
   })
   .del('/assignment/:id', async (ctx, next) => {
@@ -49,10 +47,7 @@ app
   .use(BodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
-  .on('error', err => {
-    console.error(err)
-    // dbDisconnect() // maybe?
-  })
+  .on('error', err => console.error(err) )
   .listen(PORT, () => {
     dbConnect()
     console.log(`Listening on port ${PORT}`)
@@ -60,5 +55,5 @@ app
 
 process.on('SIGTERM', () => {
   dbDisconnect()
-  console.log('SIGTERM signal received.');
+  console.log('Disconnected from DB');
 });
