@@ -20,8 +20,7 @@
     "material-table": "^1.36.4",
     "pg": "^7.11.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "unstated-next": "^1.1.0"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

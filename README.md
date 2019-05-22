@@ -25,7 +25,6 @@ yarn start:client
 ## Built With
 * [Material-UI] (https://next.material-ui.com) - Common UI components
 * [material-table] (https://material-table.com) - Editable table
-* [Unstated] (https://github.com/jamiebuilds/unstated-next) - React state management
 * [Koa] (https://koajs.com) - Node framework
 * [Parcel] (https://parceljs.org) - Web app bundler
 
