@@ -18,14 +18,14 @@ const router = new Router()
 
 router
   .get('/', async (ctx) => ctx.body = 'Welcome to the API server')
-  .get('/assignment', async (ctx, next) => {
+  .get('/assignment', async (ctx) => {
     try {
       ctx.body = await getAllAssignments()
     } catch (err) {
       ctx.throw(400)
     }
   })
-  .post('/assignment', async (ctx, next) => {
+  .post('/assignment', async (ctx) => {
     try {
       const { name, dueDate, status, subject } = ctx.request.body
       ctx.body = await addAssignment(name, dueDate, status, subject)
@@ -33,7 +33,7 @@ router
       ctx.throw(400)
     }
   })
-  .put('/assignment/:id', async (ctx, next) => {
+  .put('/assignment/:id', async (ctx) => {
     try {
       const { id } = ctx.params
       const { name, dueDate, status, subject } = ctx.request.body
@@ -42,7 +42,7 @@ router
       ctx.throw(400)
     }
   })
-  .del('/assignment/:id', async (ctx, next) => {
+  .del('/assignment/:id', async (ctx) => {
     try {
       const { id } = ctx.params
       ctx.body = await deleteAssignment(id)
